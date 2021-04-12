@@ -58,4 +58,15 @@ public class Cliente {
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "cliente_id=" + cliente_id +
+                ", nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", fone='" + fone + '\'' +
+                ", endereco='" + endereco + '\'' +
+                '}';
+    }
 }

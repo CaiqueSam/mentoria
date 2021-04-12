@@ -7,9 +7,22 @@ public class Pizza {
     private boolean extrabacon;
     private boolean sem_cebola;
     private boolean borda_recheada;
+    private float preco;
+    private int duracaoPreparo;
 
     public Pizza() {
 
+    }
+
+    public Pizza(int pizza_id, String sabor, char tamanho) {
+        this.pizza_id = pizza_id;
+        this.sabor = sabor;
+        this.tamanho = tamanho;
+        this.extrabacon = false;
+        this.sem_cebola = false;
+        this.borda_recheada = false;
+        this.preco = definirPreco(this.tamanho, this.extrabacon, this.sem_cebola, this.borda_recheada);
+        this.duracaoPreparo = definirDuracao(this.tamanho, this.sabor, this.extrabacon, this.sem_cebola, this.borda_recheada);
     }
 
     public Pizza(int pizza_id, String sabor, char tamanho, boolean extrabacon, boolean sem_cebola, boolean borda_recheada) {
@@ -19,6 +32,9 @@ public class Pizza {
         this.extrabacon = extrabacon;
         this.sem_cebola = sem_cebola;
         this.borda_recheada = borda_recheada;
+        this.preco = definirPreco(this.tamanho, this.extrabacon, this.sem_cebola, this.borda_recheada);
+        this.duracaoPreparo = definirDuracao(this.tamanho, this.sabor, this.extrabacon, this.sem_cebola, this.borda_recheada);
+
     }
 
     public int getPizza_id() {
@@ -67,5 +83,70 @@ public class Pizza {
 
     public void setBorda_recheada(boolean borda_recheada) {
         this.borda_recheada = borda_recheada;
+    }
+
+    public float getPreco() {
+        return preco;
+    }
+
+    public void setPreco(float preco) {
+        this.preco = preco;
+    }
+
+    public int getDuracaoPreparo() {
+        return duracaoPreparo;
+    }
+
+    public void setDuracaoPreparo(int duracaoPreparo) {
+        this.duracaoPreparo = duracaoPreparo;
+    }
+
+    public float definirPreco(char tamanho, boolean extrabacon, boolean sem_cebola, boolean borda_recheada){
+        if (tamanho == 'P') {
+            this.preco += 20;
+        } else if (tamanho == 'M') {
+            this.preco += 30;
+        } else if (tamanho == 'G') {
+            this.preco += 40;
+        }
+
+        if (extrabacon) {
+            this.preco += 3;
+        }if (borda_recheada){
+            this.preco += 5;
+        }
+        return this.preco;
+    }
+    public int definirDuracao(char Tamanho, String sabor, boolean extrabacon, boolean sem_cebola, boolean borda_recheada){
+        if (tamanho == 'P') {
+            this.duracaoPreparo += 15;
+        } else if (tamanho == 'M') {
+            this.duracaoPreparo += 20;
+        } else if (tamanho == 'G') {
+            this.duracaoPreparo += 25;
+        }
+
+        if (sabor == "Portuguesa"){
+            this.duracaoPreparo += 5;
+        }
+
+        if (borda_recheada){
+            this.duracaoPreparo += 5;
+        }
+        return this.duracaoPreparo;
+    }
+
+    @Override
+    public String toString() {
+        return "Pizza{" +
+                "pizza_id=" + getPizza_id() +
+                ", sabor='" + getSabor() + '\'' +
+                ", tamanho=" + getTamanho() +
+                ", extrabacon=" + isExtrabacon() +
+                ", sem_cebola=" + isSem_cebola() +
+                ", borda_recheada=" + isBorda_recheada() +
+                ", preco=" + "R$" + getPreco() +
+                ", duracaoPreparo=" + getDuracaoPreparo() + " Minutos" +
+                '}';
     }
 }

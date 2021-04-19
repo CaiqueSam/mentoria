@@ -1,26 +1,34 @@
 package com.lead.pizzaria.entities;
 
-public class Pedido {
-    private int pedido_id;
+import java.io.Serializable;
+import javax.persistence.*;
+
+@Entity
+@Table(name = "TB_PEDIDOS")
+public class Pedido implements Serializable{
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long pedido_id;
+    @Column(nullable = false)
     private Pizza pizza;
+    @Column(nullable = false)
     private Cliente cliente;
 
-    public Pedido(int pedido_id, Pizza pizza, Cliente cliente) {
+    public Pedido(long pedido_id, Pizza pizza, Cliente cliente) {
         this.pedido_id = pedido_id;
         this.pizza = pizza;
         this.cliente = cliente;
     }
 
-    public Pedido() {
-
-    }
-
-    public int getPedido_id() {
-        return pedido_id;
-    }
-
-    public void setPedido_id(int pedido_id) {
+    public void setPedido_id(long pedido_id) {
         this.pedido_id = pedido_id;
+    }
+
+    public long getPedido_id() {
+        return pedido_id;
     }
 
     public Pizza getPizza() {

@@ -1,20 +1,33 @@
 package com.lead.pizzaria.entities;
 
-public class Pizza {
-    private int pizza_id;
+import java.io.Serializable;
+import javax.persistence.*;
+
+@Entity
+@Table(name = "TB_PIZZAS")
+public class Pizza implements Serializable{
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long pizza_id;
+    @Column(nullable = false)
     private String sabor;
+    @Column(nullable = false)
     private char tamanho;
+
     private boolean extrabacon;
+
     private boolean sem_cebola;
+
     private boolean borda_recheada;
+
     private float preco;
+
     private int duracaoPreparo;
 
-    public Pizza() {
-
-    }
-
-    public Pizza(int pizza_id, String sabor, char tamanho) {
+    public Pizza(long pizza_id, String sabor, char tamanho) {
         this.pizza_id = pizza_id;
         this.sabor = sabor;
         this.tamanho = tamanho;
@@ -25,7 +38,7 @@ public class Pizza {
         this.duracaoPreparo = definirDuracao(this.tamanho, this.sabor, this.extrabacon, this.sem_cebola, this.borda_recheada);
     }
 
-    public Pizza(int pizza_id, String sabor, char tamanho, boolean extrabacon, boolean sem_cebola, boolean borda_recheada) {
+    public Pizza(long pizza_id, String sabor, char tamanho, boolean extrabacon, boolean sem_cebola, boolean borda_recheada) {
         this.pizza_id = pizza_id;
         this.sabor = sabor;
         this.tamanho = tamanho;
@@ -37,12 +50,8 @@ public class Pizza {
 
     }
 
-    public int getPizza_id() {
+    public long getPizza_id() {
         return pizza_id;
-    }
-
-    public void setPizza_id(int pizza_id) {
-        this.pizza_id = pizza_id;
     }
 
     public String getSabor() {

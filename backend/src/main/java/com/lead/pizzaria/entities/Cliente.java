@@ -8,11 +8,14 @@ import java.util.List;
 @Table(name = "TB_CLIENTES")
 public class Cliente extends Usuario {
 
-    private List<Pedido> pedidos;
+    //private List<Pedido> pedidos;
 
-    public Cliente(long usuario_id, String nome, String sobrenome, String email, String fone, String endereco, String login, String senha) {
-        super(usuario_id, nome, sobrenome, email, fone, endereco, login, senha);
+    public Cliente(String nome, String sobrenome, String email, String fone, String endereco, String login, String senha) {
+        super(nome, sobrenome, email, fone, endereco, login, senha);
         System.out.println("Usuário cliente criado com sucesso");
+    }
+
+    public Cliente() {
     }
 
     @Override
@@ -20,11 +23,7 @@ public class Cliente extends Usuario {
         return super.toString();
     }
 
-    public List<Pedido> getPedidos() {
-        return pedidos;
-    }
+    //public List<Pedido> getPedidos() {return pedidos;}
 
-    public void setPedidos(List<Pedido> pedidos) {
-        this.pedidos = pedidos;
-    }
+    //public void setPedidos(List<Pedido> pedidos) {this.pedidos = pedidos;}
 }

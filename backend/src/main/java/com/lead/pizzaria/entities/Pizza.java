@@ -27,6 +27,9 @@ public class Pizza implements Serializable{
 
     private int duracaoPreparo;
 
+    public Pizza() {
+    }
+
     public Pizza(long pizza_id, String sabor, char tamanho) {
         this.pizza_id = pizza_id;
         this.sabor = sabor;

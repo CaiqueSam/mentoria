@@ -6,9 +6,12 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TB_ATENDENTES")
 public class Atendente extends Usuario{
-    public Atendente(long usuario_id, String nome, String sobrenome, String email, String fone, String endereco, String login, String senha) {
-        super(usuario_id, nome, sobrenome, email, fone, endereco, login, senha);
+    public Atendente(String nome, String sobrenome, String email, String fone, String endereco, String login, String senha) {
+        super(nome, sobrenome, email, fone, endereco, login, senha);
         System.out.println("Usuário atendente criado com sucesso");
+    }
+
+    public Atendente() {
     }
 
     @Override

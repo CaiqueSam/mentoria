@@ -23,6 +23,9 @@ public class Pedido implements Serializable{
         this.cliente = cliente;
     }
 
+    public Pedido() {
+    }
+
     public void setPedido_id(long pedido_id) {
         this.pedido_id = pedido_id;
     }

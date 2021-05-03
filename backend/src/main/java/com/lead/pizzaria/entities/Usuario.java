@@ -9,7 +9,7 @@ public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long usuario_id;
     @Column(length = 15, nullable = false)
     private String nome;
@@ -30,7 +30,6 @@ public class Usuario implements Serializable {
     }
 
     public Usuario(String nome, String sobrenome, String email, String fone, String endereco, String login, String senha) {
-        this.usuario_id = usuario_id;
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.email = email;

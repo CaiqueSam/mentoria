@@ -1,6 +1,10 @@
 package com.lead.pizzaria.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
 
 @Entity
@@ -10,28 +14,28 @@ public class Pizza implements Serializable{
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long pizza_id;
     @Column(nullable = false)
     private String sabor;
     @Column(nullable = false)
-    private char tamanho;
-
+    private String tamanho;
+    @Column(nullable = false)
     private boolean extrabacon;
-
+    @Column(nullable = false)
     private boolean sem_cebola;
-
+    @Column(nullable = false)
     private boolean borda_recheada;
-
+    @Column(nullable = false)
     private float preco;
-
+    @Column(nullable = false)
     private int duracaoPreparo;
+
 
     public Pizza() {
     }
 
-    public Pizza(long pizza_id, String sabor, char tamanho) {
-        this.pizza_id = pizza_id;
+    public Pizza(String sabor, String tamanho) {
         this.sabor = sabor;
         this.tamanho = tamanho;
         this.extrabacon = false;
@@ -41,8 +45,7 @@ public class Pizza implements Serializable{
         this.duracaoPreparo = definirDuracao(this.tamanho, this.sabor, this.extrabacon, this.sem_cebola, this.borda_recheada);
     }
 
-    public Pizza(long pizza_id, String sabor, char tamanho, boolean extrabacon, boolean sem_cebola, boolean borda_recheada) {
-        this.pizza_id = pizza_id;
+    public Pizza(String sabor, String tamanho, boolean extrabacon, boolean sem_cebola, boolean borda_recheada) {
         this.sabor = sabor;
         this.tamanho = tamanho;
         this.extrabacon = extrabacon;
@@ -65,11 +68,11 @@ public class Pizza implements Serializable{
         this.sabor = sabor;
     }
 
-    public char getTamanho() {
+    public String getTamanho() {
         return tamanho;
     }
 
-    public void setTamanho(char tamanho) {
+    public void setTamanho(String tamanho) {
         this.tamanho = tamanho;
     }
 
@@ -113,12 +116,12 @@ public class Pizza implements Serializable{
         this.duracaoPreparo = duracaoPreparo;
     }
 
-    public float definirPreco(char tamanho, boolean extrabacon, boolean sem_cebola, boolean borda_recheada){
-        if (tamanho == 'P') {
+    public float definirPreco(String tamanho, boolean extrabacon, boolean sem_cebola, boolean borda_recheada){
+        if (tamanho == "P") {
             this.preco += 20;
-        } else if (tamanho == 'M') {
+        } else if (tamanho == "M") {
             this.preco += 30;
-        } else if (tamanho == 'G') {
+        } else if (tamanho == "G") {
             this.preco += 40;
         }
 
@@ -129,12 +132,12 @@ public class Pizza implements Serializable{
         }
         return this.preco;
     }
-    public int definirDuracao(char Tamanho, String sabor, boolean extrabacon, boolean sem_cebola, boolean borda_recheada){
-        if (tamanho == 'P') {
+    public int definirDuracao(String Tamanho, String sabor, boolean extrabacon, boolean sem_cebola, boolean borda_recheada){
+        if (tamanho == "P") {
             this.duracaoPreparo += 15;
-        } else if (tamanho == 'M') {
+        } else if (tamanho == "M") {
             this.duracaoPreparo += 20;
-        } else if (tamanho == 'G') {
+        } else if (tamanho == "G") {
             this.duracaoPreparo += 25;
         }
 
